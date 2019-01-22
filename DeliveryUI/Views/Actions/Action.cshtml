@@ -1,0 +1,54 @@
+﻿@model DeliveryUI.Models.Actions
+
+@{
+    Layout = null;
+}
+
+@{Html.RenderPartial("Header");}
+
+
+
+    <script language="javascript">
+        function callsubmitform() {
+            let url = "/Delivery/Index";
+
+            if ($("#ActionsField").val() == 2) {
+                url = "/Update/GetUpdateList";
+            }
+            else if ($("#ActionsField").val() == 3) {
+                url = "/Deactivate/GetDeactivateList";
+            }
+
+            submitform("frmActions", "get", url);
+        }
+    </script>
+
+
+            @using (Html.BeginForm("Index", "Delivery", null, FormMethod.Post, new { @id = "frmActions", @name = "frmActions" }))
+            {
+                <table>
+                        <tr>
+                            <th>
+                                @{
+                                    Html.RenderPartial("TableHeader");
+                                }
+                            </th>
+                        </tr>                    
+                        <tr>
+                        <td>
+                            @Html.DropDownListFor(
+                                x => x.ActionsField,
+                                new SelectList(Model.AllActions, "ID", "Name")
+                            )
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="button" id="btnSubmit" onclick="callsubmitform()" name="btnSubmit" value="Next" />
+                        </td>
+                    </tr>
+                </table>
+            }
+
+</body>
+@{Html.RenderPartial("Footer");}

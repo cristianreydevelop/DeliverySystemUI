@@ -1,0 +1,42 @@
+﻿<!--!DOCTYPE html-->
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Select an Action</title>
+
+    <link rel="stylesheet" type="text/css" href="~/Content/Header.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Table.css" />
+
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/LocalScripts.js"></script>
+
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <link href="~/Content/ValidationStyles.css" rel="stylesheet" />
+
+    <script language="javascript">
+        function Cancel(remove, form) {
+            if (remove == true) {
+                $("#from").rules("remove");
+                $("#to").rules("remove");
+                $("#DeliveryField").rules("remove");
+            }
+
+            let url = "/Actions/Action";
+
+            submitform(form, "get", url);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="header">
+        <p style="font-size:x-large;text-align:center;">Automated Deliveries - Never forget to send an important message.</p>
+        <!--p style="font-size:large;text-align:center;">The effective way to communicate with your partners and clients.</p-->
+
+        <p style="font-size:x-large;text-align:center;color:blue">@(string.IsNullOrEmpty(Model.Message) ? string.Empty : Model.Message)</p>
+    </div>
+
+    <div class="header2">

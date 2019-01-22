@@ -1,0 +1,48 @@
+﻿@model DeliveryUI.Models.DeactivateModels
+
+@{
+    Layout = null;
+}
+
+@{Html.RenderPartial("Header");}
+
+@using (Html.BeginForm("Index", "Delivery", null, FormMethod.Post, new { @id = "frmUpdate", @name = "frmUpdate" }))
+{
+    <table>
+        <tr>
+            <th>
+                @{
+    Html.RenderPartial("TableHeader");
+                }
+            </th>
+
+        </tr>
+
+        <tr>
+            <td>
+                @Html.DropDownListFor(
+                                        x => x.ActiveDeliveries,
+                                        new SelectList(Model.AllDeactivates, "deliveriesid", "info")
+                                    )
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            <input type="hidden" id="deliveriesId" />
+                            <input type="button" id="btnUpdate" value="Load Delivery" onclick="submitform('frmUpdate', 'get', '/Delivery/Index');" />
+                        </td>
+                        <td>
+                            <input type="button" id="btnCancel" name="btnCancel" onclick="Cancel(false, 'frmUpdate');" value="Cancel" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            </tr>
+        </table>
+}
+
+@{Html.RenderPartial("Footer");}

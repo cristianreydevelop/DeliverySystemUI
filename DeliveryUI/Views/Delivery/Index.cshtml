@@ -1,0 +1,89 @@
+﻿@using DeliveryUI.Models
+@model DeliveryModels
+@{
+    Layout = null;
+}
+
+@{Html.RenderPartial("Header");}
+
+    @using (Html.BeginForm("SaveDelivery", "Delivery", null, FormMethod.Post, new { @id = "frmDeliveries", @name = "frmDeliveries" }))
+    {
+        <table>
+            <tr>
+                <th colspan="2">
+                    @{
+        Html.RenderPartial("TableHeader");
+                    }
+                </th>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.DeliveryField)
+                </td>
+                <td>
+                    @Html.DropDownListFor(
+                                x => x.DeliveryField,
+                                new SelectList(Model.Deliveries, "ID", "Name", Model.deliveryId),
+                                "Select One"
+                            )
+                    <br />@Html.ValidationMessageFor(model => model.DeliveryField)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.from)
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.from, new { @Value = Model.from })
+                    <br />@Html.ValidationMessageFor(model => model.from)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.to)
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.to, new { @Value = Model.to })
+                    <br />@Html.ValidationMessageFor(model => model.to)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.message)
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.message, new { @Value = Model.message })
+                    <br />@Html.ValidationMessageFor(model => model.message)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.active)
+                </td>
+                <td>
+                    @Html.CheckBoxFor(model => model.active, new { @Checked = Model.active })
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                <input type="button" id="btnSubmit" name="btnSubmit" onclick="$('#frmDeliveries').submit();" value="Save" />
+                            </td>
+                            <td>
+                                <input type="button" id="btnCancel" name="btnCancel" onclick="Cancel(true, 'frmDeliveries');" value="Cancel" />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        <input type="hidden" id="deliveriesId" name="deliveriesId" value="@Model.deliveriesId" />
+
+    }
+
+    @{Html.RenderPartial("Footer");}

@@ -1,0 +1,53 @@
+﻿@using DeliveryUI.Models
+@model DeliveryModels
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet"
+          type="text/css"
+          href="Content/Styles.css" />
+
+    <meta name="viewport" content="width=device-width" />
+    <script src="Scripts/jquery-1.8.2.min.js"></script>
+
+    <title>Index</title>
+
+    <script language="javascript">
+        /*$(document).ready(function () {
+            $("#InsertDelivery.active").change(function () {
+                if (this.checked) {
+                    alert('checked')
+                }
+                else {
+                    alert('unchecked')
+                }
+            })
+        });*/
+
+        function submitform() {
+            $("#_method").val("PUT");
+            alert('here');
+
+            $("#frmDeliveries").submit();
+            /*$(document).ready(function () {
+                $("#InsertDelivery.active").change(function () {
+                    if (this.checked) {
+                        alert('checked')
+                    }
+                    else {
+                        alert('unchecked')
+                    }
+                })
+            });*/
+        }
+    </script>
+</head>
+<body>
+</body>
+<a href="~/Views/Delivery/Index.cshtml">~/Views/Delivery/Index.cshtml</a>
+</html>
